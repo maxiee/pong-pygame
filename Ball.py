@@ -15,7 +15,6 @@ class Ball():
         self.screen_width = self.surface.get_width()
         self.direction = Vec2d.Vec2d(-0.2, -1.0)
         self.velocity = Vec2d.Vec2d(0.0, 0.0)
-        self.speed = 0.0
 
     def update(self):
         self.velocity.x += self.acc
