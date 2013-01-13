@@ -13,13 +13,13 @@ colors = {
 paddle = {
     'width':15,
     'height':70,
-    'speed':10,
+    'speed':10.0,
     'color':'white'
 }
 
 ball = {
-    'radius':10,
+    'size':10,
     'acc':0.5,
-    'max_speed':3,
+    'max_speed':3.0,
     'color':'white'
 }

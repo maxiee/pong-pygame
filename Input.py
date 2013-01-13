@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 class UserInput():
     def __init__(self):
@@ -12,7 +13,7 @@ class UserInput():
             if event.type == pygame.KEYDOWN:
                 self.keyStatus.append(event.key)
             if event.type == pygame.KEYUP:
-                try:
+                if event.key in self.keyStatus:
                     self.keyStatus.remove(event.key)
-                except e:
-                    print e
+
+                    
