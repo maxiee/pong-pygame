@@ -33,28 +33,10 @@ class Game():
         pygame.display.update()
 
     def collide_with_paddle(self):
-        #if self.ball.rect.colliderect(self.paddle1.rect) or self.ball.rect.colliderect(self.paddle2.rect):
-         #   self.ball.collide_with_paddle()
-        #elif self.ball.rect.contains(self.paddle1.rect) or self.ball.rect.contains(self.paddle2.rect):
-        #    self.ball.collide_with_paddle()
-        if self.check_collision(self.ball, self.paddle1):
+        if self.ball.rect.colliderect(self.paddle1.rect) or self.ball.rect.colliderect(self.paddle2.rect):
             self.ball.collide_with_paddle()
-        if self.check_collision(self.ball, self.paddle2):
+        elif self.ball.rect.contains(self.paddle1.rect) or self.ball.rect.contains(self.paddle2.rect):
             self.ball.collide_with_paddle()
-
-    def check_collision(self, obj1,obj2):
-        """checks if two objects have collided, using hitmasks"""
-        try:rect1, rect2, hm1, hm2 = obj1.rect, obj2.rect, obj1.hitmask, obj2.hitmask
-        except AttributeError:return False
-        rect=rect1.clip(rect2)
-        if rect.width==0 or rect.height==0:
-            return False
-        x1,y1,x2,y2 = rect.x-rect1.x,rect.y-rect1.y,rect.x-rect2.x,rect.y-rect2.y
-        for x in xrange(rect.width):
-            for y in xrange(rect.height):
-                if hm1[x1+x][y1+y] and hm2[x2+x][y2+y]:return True
-                else:continue
-        return False
 
     def run(self):
         while self.running:
