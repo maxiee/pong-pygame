@@ -20,9 +20,9 @@ class Game():
         self.score = Score.Score(self.surfaceObject)
         pygame.mixer.init()
         # pygame.mixer.pre_init(44100, -16, 2, 2048)
-        self.snd_bounce = pygame.mixer.Sound("D:\\projects\\pong-pygame\\res\\paddle_bounce.wav")
+        self.snd_bounce = pygame.mixer.Sound("res\\paddle_bounce.wav")
         self.snd_bounce.set_volume(0.3)
-        self.snd_main = pygame.mixer.Sound("D:\\projects\\pong-pygame\\res\\main_loop.ogg")
+        self.snd_main = pygame.mixer.Sound("res\\main_loop.ogg")
         self.snd_main.set_volume(0.5)
         self.snd_main.play(-1)
 
