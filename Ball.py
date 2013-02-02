@@ -25,10 +25,11 @@ class Ball():
             self.speed += self.acc
             self.cap_acc()
 
-        self.velocity.x = self.direction.x * self.speed
-        self.velocity.y = self.direction.y * self.speed
+        # self.velocity = self.velocity.normalized()
+        self.direction = self.direction.normalized()
 
-        self.velocity = self.velocity.normalized()
+        self.velocity.x = self.direction.x * self.speed
+        self.velocity.y = self.direction.y * self.speed  
 
         self.position.x += self.velocity.x
         self.position.y += self.velocity.y

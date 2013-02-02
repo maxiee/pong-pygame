@@ -20,7 +20,7 @@ paddle = {
 ball = {
     'size':10.0,
     'acc':0.25,
-    'max_speed':1.75,
+    'max_speed':1.45,
     'color':'white'
 }
 

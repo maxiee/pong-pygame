@@ -18,6 +18,13 @@ class Game():
         self.paddle1 = Paddle.Paddle(self.surfaceObject, 0, self.keys.keyStatus)
         self.paddle2 = Paddle.Paddle(self.surfaceObject, 1, self.keys.keyStatus)
         self.score = Score.Score(self.surfaceObject)
+        pygame.mixer.init()
+        # pygame.mixer.pre_init(44100, -16, 2, 2048)
+        self.snd_bounce = pygame.mixer.Sound("D:\\projects\\pong-pygame\\res\\paddle_bounce.wav")
+        self.snd_bounce.set_volume(0.3)
+        self.snd_main = pygame.mixer.Sound("D:\\projects\\pong-pygame\\res\\main_loop.ogg")
+        self.snd_main.set_volume(0.5)
+        self.snd_main.play(-1)
 
     def update(self):
         # pygame.display.set_caption('PyPong FPS: %d' %self.mainClock.get_fps())
@@ -38,8 +45,10 @@ class Game():
         #Checks paddle collisions
         if self.ball.rect.colliderect(self.paddle1.rect) or self.ball.rect.colliderect(self.paddle2.rect):
             self.ball.collide_with_paddle()
+            self.snd_bounce.play()
         elif self.ball.rect.contains(self.paddle1.rect) or self.ball.rect.contains(self.paddle2.rect):
             self.ball.collide_with_paddle()
+            self.snd_bounce.play()
 
         #Checks wall collisions
         if self.ball.rect.top <= 0.0 - config.ball['size']/2:
@@ -66,7 +75,7 @@ class Game():
             self.update()
             self.draw()
             pygame.display.flip()
-            self.mainClock.tick(config.config['FPS'])
+            self.mainClock.tick_busy_loop(config.config['FPS'])
 
 if __name__=='__main__':
     game = Game()
