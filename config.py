@@ -1,7 +1,7 @@
 config = {
-    'width':1600,
-    'height':900,
-    'FPS':60
+    'width':800,
+    'height':600,
+    'FPS':180
 }
 
 colors = {
@@ -12,14 +12,19 @@ colors = {
 
 paddle = {
     'width':15,
-    'height':70,
-    'speed':4,
+    'height':75,
+    'speed':1.0,
     'color':'white'
 }
 
 ball = {
-    'size':10,
-    'acc':1,
-    'max_speed':3,
+    'size':10.0,
+    'acc':0.25,
+    'max_speed':0.75,
+    'color':'white'
+}
+
+score = {
+    'font_size':50,
     'color':'white'
 }

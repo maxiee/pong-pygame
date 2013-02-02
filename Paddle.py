@@ -9,10 +9,10 @@ class Paddle():
         self.screen_height = self.surface.get_height()
 
         if self.side == 1:
-            self.init_x = self.surface.get_width() - config.paddle['width'] - config.paddle['width'] / 2
+            self.init_x = self.surface.get_width() - config.paddle['width']
             self.init_y = self.surface.get_height()/2
         else:
-            self.init_x = 0 - config.paddle['width']/2
+            self.init_x = 0
             self.init_y = self.surface.get_height()/2
 
         self.rect = pygame.Rect(self.init_x, self.init_y, config.paddle['width'], config.paddle['height'])
@@ -26,4 +26,4 @@ class Paddle():
             self.rect.y += self.speed
 
     def draw(self):
-        pygame.draw.rect(self.surface, self.color, (self.rect.center, self.rect.size))
+        pygame.draw.rect(self.surface, self.color, self.rect)
