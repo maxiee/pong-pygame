@@ -14,12 +14,13 @@ class Game():
         self.surfaceObject = pygame.display.set_mode((config.config['width'], config.config['height']))
         self.keys = Input.UserInput()
         self.ball = Ball.Ball(self.surfaceObject)
+        self.ball.randomize_direction()
         self.paddle1 = Paddle.Paddle(self.surfaceObject, 0, self.keys.keyStatus)
         self.paddle2 = Paddle.Paddle(self.surfaceObject, 1, self.keys.keyStatus)
         self.score = Score.Score(self.surfaceObject)
 
     def update(self):
-        pygame.display.set_caption('PyPong FPS: %d' %self.mainClock.get_fps())
+        # pygame.display.set_caption('PyPong FPS: %d' %self.mainClock.get_fps())
         self.ball.update()
         self.paddle1.update()
         self.paddle2.update()
@@ -39,20 +40,23 @@ class Game():
             self.ball.collide_with_paddle()
         elif self.ball.rect.contains(self.paddle1.rect) or self.ball.rect.contains(self.paddle2.rect):
             self.ball.collide_with_paddle()
+
         #Checks wall collisions
-        if self.ball.rect.y <= 0.0 - config.ball['size']/2.0:
+        if self.ball.rect.top <= 0.0 - config.ball['size']/2:
             self.ball.collide_with_wall()
-        if self.ball.rect.y > self.ball.screen_height - config.ball['size'] - config.ball['size']/2:
+        if self.ball.rect.top > self.ball.screen_height - config.ball['size']/2:
             self.ball.collide_with_wall()
 
     def ball_out_of_screen(self):
         if self.ball.rect.right < 0:
-            self.score.player1 += 1
+            self.score.player2 += 1
+            self.ball.randomize_direction()
             self.ball.reset()
         if self.ball.rect.left > self.surfaceObject.get_width():
-            self.score.player2 += 1
-            self.ball.reset()
-        
+            self.score.player1 += 1
+            self.ball.randomize_direction()
+            self.ball.reset()            
+
     def run(self):
         while self.running:
             if pygame.K_ESCAPE in self.keys.keyStatus:

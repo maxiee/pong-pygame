@@ -20,9 +20,9 @@ class Paddle():
         self.color = config.colors[config.paddle['color']]
 
     def update(self):
-        if pygame.K_UP in self.keyStatus and self.rect.top + self.rect.size[1]/2 >= 0:
+        if pygame.K_UP in self.keyStatus and self.rect.top >= 0:
             self.rect.y -= self.speed
-        if pygame.K_DOWN in self.keyStatus and self.rect.bottom + self.rect.size[1]/2 <= self.screen_height:
+        if pygame.K_DOWN in self.keyStatus and self.rect.bottom <= self.screen_height:
             self.rect.y += self.speed
 
     def draw(self):
